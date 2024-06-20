@@ -1,0 +1,60 @@
+
+trigger: none 
+
+#pool:
+#  name: pif-cloud    # name of agent pool, update the name and uncomment
+  
+resources:
+  repositories:
+    - repository: pif-devops-pipelines # PIF yaml templates for non-prod environment
+      type: git
+      ref: release                     # branch name
+#      endpoint: testcon               # service connection, PIF team will provide the value
+      name: 'BOS Process Integration Framework/pif-devops-pipelines'   # PIF Project Name / Repo Name
+      
+    - repository: pif-dev              # PIF tools for non-prod environment
+      type: git
+      ref: release
+#      endpoint: testcon
+      name: 'BOS Process Integration Framework/pif-dev'
+
+variables:
+- name: releaseversion
+  value: '1.0.0'
+- template: vars.yml  # variable template
+
+stages:
+#------------------------------------------------------------------------------
+# Build & Test
+#------------------------------------------------------------------------------
+- stage: Build
+  displayName: Build and test
+  jobs:
+  - template: build/dotnet.yml@pif-devops-pipelines
+    parameters:
+      sourceRoot: ''   # relative path for source root from repo root, set '' if source root = repo root
+      enableBuild : 'true'
+      enableSonarQube : 'false'
+      enableTest : 'true'
+      enableCodeCoverage : 'true'
+      SonarQubeServer: 'Sonar - PIF'
+      SonarQubeprojectKey: 'BOS_PIF'
+      SonarQubeprojectName: 'BOS_PIF'
+      testRunTitle: 'BOS Bootstrap Unit Test - $(Build.DefinitionName)'
+
+#------------------------------------------------------------------------------
+# Package
+#------------------------------------------------------------------------------
+- stage: Package
+  dependsOn: Build
+  condition: succeeded('Build')
+  displayName: Package
+  jobs:  
+  - template: pipelines/package.yml@pif-devops-pipelines
+    parameters:
+      buildtype: 'Buildkit' # extBuildkit for dotnet pipelines and Buildkit for any other pipelines
+      context: ''       # relative path for soure root from repo root, set '' if source root is repo root
+      DockerFolder: ''  # relative path for docker file directory from repo root, set '' if the directory is repo root
+      DockerFile: 'Dockerfile'   # name of docker file
+      image_name: '$(ImageName)'
+      ConfigPath: 'release'  # relative path for release directory from repo root
