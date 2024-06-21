@@ -1,8 +1,8 @@
 
 trigger: none 
 
-#pool:
-#  name: pif-cloud    # name of agent pool, update the name and uncomment
+pool:
+  name: pif-cloud    # name of agent pool, update the name and uncomment
   
 resources:
   repositories:
