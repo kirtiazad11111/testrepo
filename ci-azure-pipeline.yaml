@@ -8,7 +8,7 @@ resources:
   repositories:
     - repository: pif-devops-pipelines # PIF yaml templates for non-prod environment
       type: git
-      ref: release                     # branch name
+      ref: github-fix                     # branch name
 #      endpoint: testcon               # service connection, PIF team will provide the value
       name: 'BOS Process Integration Framework/pif-devops-pipelines'   # PIF Project Name / Repo Name
       
