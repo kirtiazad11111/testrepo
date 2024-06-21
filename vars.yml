@@ -1,0 +1,14 @@
+# File: vars.yml
+variables:
+  BuildConfiguration: release
+  BuildPlatform: 'any cpu'
+  ImageName: 'demo'
+  podName: demo
+  releaseTag: '$(releaseversion)-$(Build.BuildId)'
+  vaultAppName: backend
+  vaultProjName: bootstrap
+  vaulturl: XXXXXXXXXX
+  ProdVaulturl: XXXXXXXXXXXXX
+  CHARTNAME: XXXXXXXXXXX
+  RELEASENAME: pifservice
+  VERSION: 1.0.0
