@@ -8,6 +8,6 @@ variables:
   vaultProjName: bootstrap
   vaulturl: XXXXXXXXXX
   ProdVaulturl: XXXXXXXXXXXXX
-  CHARTNAME: XXXXXXXXXXX
+  CHARTNAME: bitnami/tomcat
   RELEASENAME: pifservice
-  VERSION: 1.0.0
+  VERSION: 11.2.7
