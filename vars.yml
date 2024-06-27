@@ -6,8 +6,6 @@ variables:
   releaseTag: '$(releaseversion)-$(Build.BuildId)'
   vaultAppName: backend
   vaultProjName: bootstrap
-  vaulturl: XXXXXXXXXX
-  ProdVaulturl: XXXXXXXXXXXXX
   CHARTNAME: bitnami/tomcat
   RELEASENAME: pifservice
   VERSION: 11.2.7
