@@ -2,7 +2,6 @@
 variables:
   BuildConfiguration: release
   BuildPlatform: 'any cpu'
-  ImageName: 'demo'
   podName: demo
   releaseTag: '$(releaseversion)-$(Build.BuildId)'
   vaultAppName: backend
