@@ -6,6 +6,6 @@ variables:
   releaseTag: '$(releaseversion)-$(Build.BuildId)'
   vaultAppName: backend
   vaultProjName: bootstrap
-  CHARTNAME: ingress-nginx/ingress-nginx
+  CHARTNAME: elastic/eck-stack
   RELEASENAME: pifservice
-  VERSION: 4.10.1
+  VERSION: 0.11.0
