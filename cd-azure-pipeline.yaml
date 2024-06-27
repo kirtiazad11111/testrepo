@@ -15,6 +15,11 @@ resources:
       type: git
       ref: release
       name: 'BOS Process Integration Framework/pif-dev'
+    - repository: pif-prod             
+      type: git
+      ref: master
+#      endpoint: testcon
+      name: 'BOS Process Integration Framework/pif-dev'
 
 variables:
 - name: releaseversion
