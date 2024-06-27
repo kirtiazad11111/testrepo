@@ -6,6 +6,6 @@ variables:
   releaseTag: '$(releaseversion)-$(Build.BuildId)'
   vaultAppName: backend
   vaultProjName: bootstrap
-  CHARTNAME: bitnami/tomcat
+  CHARTNAME: ingress-nginx/ingress-nginx
   RELEASENAME: pifservice
-  VERSION: 11.2.7
+  VERSION: 4.10.1
