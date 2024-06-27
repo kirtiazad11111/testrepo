@@ -1,0 +1,40 @@
+
+trigger: none
+
+pool:
+  name: pif-cloud    # name of agent pool, update the name and uncomment
+
+resources:
+  repositories:
+    - repository: pif-devops-non-prod  # PIF yaml templates for non-prod environment
+      type: git
+      ref: github-fix                     # branch name
+#      endpoint: testcon               # service connection, PIF team will provide the value
+      name: 'BOS Process Integration Framework/pif-devops-pipelines'  # PIF Project Name / Repo Name
+
+    - repository: pif-dev              # PIF repo for non-prod tools
+      type: git
+      ref: release
+#      endpoint: testcon
+      name: 'BOS Process Integration Framework/pif-dev'
+
+variables:
+- name: releaseversion
+  value: '1.0.0'
+- template: vars.yml  # variable template
+
+stages:
+#------------------------------------------------------------------------------
+# Deploy to Test
+#------------------------------------------------------------------------------
+- stage: DeployToTest
+  displayName: Deploy to Test
+  jobs:
+    - template: pipelines/helm_cd_deploy.yml@pif-devops-non-prod
+      parameters:
+        Env: 'test'
+        Project: 'BOS Process Integration Framework'  # name of Azure Devops project
+        Pipeline: 'BOS Process Integration Framework-CI (2)'  # name of CI build pipeline
+        DeployScriptSubPath: 'deployscripts/v2'  # Do not change, PIF team will provide the value if change needed
+        BuildId: $(BuildNum)   # Blank by default in pipeline variables, it will deploy latest build, BuildNum in pipeline variables need to be updated only if you want to deploy older build
+        timeoutInMinutes: '2'
