@@ -37,7 +37,7 @@ stages:
       parameters:
         Env: 'test'
         Project: 'BOS Process Integration Framework'  
-        Pipeline: 'BOS Process Integration Framework-CI (2)'  
+        Pipeline: 'Github-CI-Pipeline'  
         DeployScriptSubPath: 'deployscripts/v2'  
         BuildId: $(BuildNum)
         timeoutInMinutes: '2'
