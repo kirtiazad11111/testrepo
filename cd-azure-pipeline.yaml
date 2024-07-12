@@ -33,7 +33,7 @@ stages:
 - stage: DeployToTest
   displayName: Deploy to Test
   jobs:
-    - template: pipelines/helm_cd_deploy.yml@pif-devops-non-prod
+    - template: pipelines/helm_deploy.yml@pif-devops-non-prod
       parameters:
         Env: 'test'
         Project: 'BOS Process Integration Framework'  
